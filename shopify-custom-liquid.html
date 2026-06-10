@@ -1,0 +1,204 @@
+<!--
+Shopify Custom Liquid Version
+Paste this into a Custom Liquid section.
+Replace the room graphics with real uploaded room images later if needed.
+-->
+
+<section class="light-demo-shopify">
+  <div class="light-demo-content-shopify">
+    <p class="eyebrow-shopify">Interactive Preview</p>
+    <h2>See the glow before you buy.</h2>
+    <p>
+      Click the switch to preview how our lighting decor can turn a plain room
+      into a warm, elegant, and inviting space.
+    </p>
+
+    <label class="light-switch-shopify">
+      <input type="checkbox" id="shopifyLightToggle">
+      <span class="slider-shopify"></span>
+      <span id="shopifySwitchLabel">Turn lights on</span>
+    </label>
+  </div>
+
+  <div class="room-preview-shopify">
+    <div class="room-shopify" id="shopifyRoomPreview">
+      <div class="wall-light-shopify left"></div>
+      <div class="wall-light-shopify right"></div>
+      <div class="sofa-shopify"></div>
+      <div class="lamp-shopify"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .light-demo-shopify {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 46px;
+    border-radius: 36px;
+    background: #fff8ef;
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    align-items: center;
+    gap: 36px;
+  }
+
+  .light-demo-content-shopify h2 {
+    font-size: clamp(36px, 5vw, 62px);
+    line-height: 1;
+    margin: 0 0 18px;
+    color: #2b2118;
+  }
+
+  .light-demo-content-shopify p {
+    color: #806c5a;
+    line-height: 1.7;
+  }
+
+  .eyebrow-shopify {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+    color: #c58b3b;
+    font-weight: 800;
+  }
+
+  .light-switch-shopify {
+    margin-top: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    font-weight: 800;
+  }
+
+  .light-switch-shopify input {
+    display: none;
+  }
+
+  .slider-shopify {
+    width: 78px;
+    height: 40px;
+    background: #2b2118;
+    border-radius: 999px;
+    position: relative;
+    transition: 0.3s ease;
+  }
+
+  .slider-shopify:before {
+    content: "";
+    width: 32px;
+    height: 32px;
+    background: #ffffff;
+    border-radius: 50%;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    transition: 0.3s ease;
+  }
+
+  .light-switch-shopify input:checked + .slider-shopify {
+    background: #c58b3b;
+    box-shadow: 0 0 34px rgba(197, 139, 59, 0.7);
+  }
+
+  .light-switch-shopify input:checked + .slider-shopify:before {
+    transform: translateX(38px);
+  }
+
+  .room-preview-shopify {
+    min-height: 500px;
+    border-radius: 30px;
+    overflow: hidden;
+    background: #15100c;
+  }
+
+  .room-shopify {
+    height: 500px;
+    position: relative;
+    background: linear-gradient(180deg, #191410, #0f0b08);
+    transition: 0.4s ease;
+  }
+
+  .room-shopify.is-on {
+    background:
+      radial-gradient(circle at 25% 36%, rgba(255, 190, 90, 0.45), transparent 25%),
+      radial-gradient(circle at 75% 36%, rgba(255, 190, 90, 0.42), transparent 25%),
+      radial-gradient(circle at 80% 70%, rgba(255, 190, 90, 0.44), transparent 30%),
+      linear-gradient(180deg, #76543a, #312119);
+  }
+
+  .wall-light-shopify {
+    width: 30px;
+    height: 80px;
+    background: #4b392d;
+    border-radius: 999px;
+    position: absolute;
+    top: 140px;
+  }
+
+  .wall-light-shopify.left {
+    left: 24%;
+  }
+
+  .wall-light-shopify.right {
+    right: 24%;
+  }
+
+  .room-shopify.is-on .wall-light-shopify {
+    background: #ffd28a;
+    box-shadow: 0 0 55px rgba(255, 196, 100, 0.85);
+  }
+
+  .sofa-shopify {
+    width: 340px;
+    height: 120px;
+    background: #33261f;
+    border-radius: 34px;
+    position: absolute;
+    left: 70px;
+    bottom: 60px;
+  }
+
+  .room-shopify.is-on .sofa-shopify {
+    background: #8a6045;
+  }
+
+  .lamp-shopify {
+    width: 90px;
+    height: 170px;
+    background: #4c382b;
+    border-radius: 40px 40px 8px 8px;
+    position: absolute;
+    right: 100px;
+    bottom: 70px;
+  }
+
+  .room-shopify.is-on .lamp-shopify {
+    background: #f6be73;
+    box-shadow: 0 0 70px rgba(255, 199, 102, 0.62);
+  }
+
+  @media (max-width: 800px) {
+    .light-demo-shopify {
+      grid-template-columns: 1fr;
+      padding: 24px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggle = document.getElementById("shopifyLightToggle");
+    const room = document.getElementById("shopifyRoomPreview");
+    const label = document.getElementById("shopifySwitchLabel");
+
+    if (!toggle || !room || !label) return;
+
+    toggle.addEventListener("change", function () {
+      const isOn = toggle.checked;
+      room.classList.toggle("is-on", isOn);
+      label.textContent = isOn ? "Lights are on" : "Turn lights on";
+    });
+  });
+</script>
